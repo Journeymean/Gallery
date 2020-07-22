@@ -48,21 +48,6 @@ function Gallery(arg) {
     element.classList.add("buttons");
     let zoomButtonsNode = zoomAreaNode.appendChild(element);
 
-    element = document.createElement("div");
-    element.classList.add("progress-area","hide");
-    let progressArea=zoomAreaNode.appendChild(element);
-
-    element = document.createElement("div");
-    element.classList.add("progress-bar");
-    let progressNode=progressArea.appendChild(element);
-
-    element = document.createElement("div");
-    progressNode.appendChild(element);
-
-    element = document.createElement("div");
-    element.classList.add("progress-info");
-    progressArea.appendChild(element);
-
     if (arg.zoom) {
       element = document.createElement("span");
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 50 20 v 60 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 20 50  h 60 " /></svg>';
@@ -141,9 +126,6 @@ function Gallery(arg) {
     const centerNode = frameNode.querySelector(".center-button");
     const counterCurrentNode = frameNode.querySelector(".counter-current");
     const counterTotalNode = frameNode.querySelector(".counter-total");
-    const progressAreaNode=frameNode.querySelector('.progress-area');
-    const progressBarNode=frameNode.querySelector('.progress-bar div');
-    const progressInfoNode=frameNode.querySelector('.progress-info');
 
     imageContainerNode.src = arg.images[0];
     frameNode.images = arg.images;
@@ -317,34 +299,6 @@ function Gallery(arg) {
       }
     }
 
-    function loadImage(url) {
-      imageContainerNode.classList.add('hide');
-      progressAreaNode.classList.remove('hide');
-      let xhr = new XMLHttpRequest();
-      xhr.open("GET", url, true);
-      xhr.send();
-      xhr.onload = function () {
-        if (xhr.status != 200) {
-          console.log(`Error ${xhr.status}: ${xhr.statusText}`);
-        } else {
-          imageContainerNode.src = url;
-          imageContainerNode.classList.remove('hide');
-          progressAreaNode.classList.add('hide');
-        }
-      };
-
-      xhr.onprogress = function (event) {
-        if (event.lengthComputable) {
-          progressBarNode.style.width=(event.loaded/event.total*100)+'%';
-          progressInfoNode.innerText=`${event.loaded} of ${event.total} Kb`; 
-        } 
-      };
-
-      xhr.onerror = function () {
-        console.log("Image loading error");
-      };
-    }
-
     function nextImage() {
       if (frameNode.currentImage >= frameNode.images.length - 1) {
         frameNode.currentImage = 0;
@@ -352,7 +306,7 @@ function Gallery(arg) {
         frameNode.currentImage++;
       }
       imageContainerNode.src = "";
-      loadImage(frameNode.images[frameNode.currentImage]);
+      imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
       }
@@ -375,13 +329,13 @@ function Gallery(arg) {
     }
 
     function prevImage() {
-      if (frameNode.currentImage >= frameNode.images.length - 1) {
-        frameNode.currentImage = 0;
+      if (frameNode.currentImage == 0) {
+        frameNode.currentImage = frameNode.images.length - 1;
       } else {
         frameNode.currentImage--;
       }
       imageContainerNode.src = "";
-      loadImage(frameNode.images[frameNode.currentImage]);
+      imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage - 1;
       }
