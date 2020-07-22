@@ -48,6 +48,10 @@ function Gallery(arg) {
     element.classList.add("buttons");
     let zoomButtonsNode = zoomAreaNode.appendChild(element);
 
+    element = document.createElement("div");
+    element.classList.add("progress");
+    zoomAreaNode.appendChild(element);
+
     if (arg.zoom) {
       element = document.createElement("span");
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 50 20 v 60 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 20 50  h 60 " /></svg>';
@@ -357,12 +361,12 @@ function Gallery(arg) {
       if (frameNode.currentImage >= frameNode.images.length - 1) {
         frameNode.currentImage = 0;
       } else {
-        frameNode.currentImage++;
+        frameNode.currentImage--;
       }
       imageContainerNode.src = "";
-      imageContainerNode.src = frameNode.images[frameNode.currentImage];
+      loadImage(frameNode.images[frameNode.currentImage]);
       if (counterCurrentNode) {
-        counterCurrentNode.innerText = frameNode.currentImage + 1;
+        counterCurrentNode.innerText = frameNode.currentImage - 1;
       }
     }
 
