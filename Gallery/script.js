@@ -49,7 +49,7 @@ function Gallery(arg) {
     let zoomButtonsNode = zoomAreaNode.appendChild(element);
 
     element = document.createElement("div");
-    element.classList.add("progress-area");
+    element.classList.add("progress-area","hide");
     let progressArea=zoomAreaNode.appendChild(element);
 
     element = document.createElement("div");
@@ -141,6 +141,9 @@ function Gallery(arg) {
     const centerNode = frameNode.querySelector(".center-button");
     const counterCurrentNode = frameNode.querySelector(".counter-current");
     const counterTotalNode = frameNode.querySelector(".counter-total");
+    const progressAreaNode=frameNode.querySelector('.progress-area');
+    const progressBarNode=frameNode.querySelector('.progress-bar div');
+    const progressInfoNode=frameNode.querySelector('.progress-info');
 
     imageContainerNode.src = arg.images[0];
     frameNode.images = arg.images;
@@ -315,6 +318,8 @@ function Gallery(arg) {
     }
 
     function loadImage(url) {
+      imageContainerNode.classList.add('hide');
+      progressAreaNode.classList.remove('hide');
       let xhr = new XMLHttpRequest();
       xhr.open("GET", url, true);
       xhr.send();
@@ -323,15 +328,15 @@ function Gallery(arg) {
           console.log(`Error ${xhr.status}: ${xhr.statusText}`);
         } else {
           imageContainerNode.src = url;
+          imageContainerNode.classList.remove('hide');
+          progressAreaNode.classList.add('hide');
         }
       };
 
       xhr.onprogress = function (event) {
         if (event.lengthComputable) {
-          alert(`Получено ${event.loaded} из ${event.total} байт`);
-        } else {
-          alert(`Получено ${event.loaded} байт`);
-        }
+          progressBarNode.style.width=(event.loaded/event.total*100)+'%';
+        } 
       };
 
       xhr.onerror = function () {

@@ -27,6 +27,16 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+.progress-area{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
 .progress-bar {
     height: 2rem;
     width: 80%;
@@ -36,6 +46,12 @@
     border: 1px solid white;
     border-radius: 10px;
     overflow: hidden;
+}
+
+.progress-bar div{
+  height: 100%;
+  width: 100%;
+  background-color: white;
 }
 
 .frame-container .buttons-area {
@@ -198,4 +214,8 @@
 .frame-container .grabbing {
   cursor: grabbing !important;
   transition-duration: unset !important;
+}
+
+.hide{
+  display: none;
 }
