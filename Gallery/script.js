@@ -336,6 +336,7 @@ function Gallery(arg) {
       xhr.onprogress = function (event) {
         if (event.lengthComputable) {
           progressBarNode.style.width=(event.loaded/event.total*100)+'%';
+          progressInfoNode.innerText=`${event.loaded} of ${event.total} Kb`; 
         } 
       };
 
