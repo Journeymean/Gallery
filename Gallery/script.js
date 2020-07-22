@@ -305,6 +305,7 @@ function Gallery(arg) {
       } else {
         frameNode.currentImage++;
       }
+      imageContainerNode.src='';
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -333,6 +334,7 @@ function Gallery(arg) {
       } else {
         frameNode.currentImage++;
       }
+      imageContainerNode.src='';
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
