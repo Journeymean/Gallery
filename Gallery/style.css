@@ -27,6 +27,16 @@
   box-sizing: border-box;
   margin: 0;
 }
+.progress-bar {
+    height: 2rem;
+    width: 80%;
+    align-self: center;
+    justify-self: center;
+    background-color: #9a9a9a;
+    border: 1px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
 
 .frame-container .buttons-area {
   position: absolute;
@@ -158,7 +168,7 @@
   color: white;
 }
 
-.no-touch .buttons-area .buttons span:hover  path {
+.no-touch .buttons-area .buttons span:hover path {
   stroke: white !important;
 }
 

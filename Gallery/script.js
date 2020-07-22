@@ -49,8 +49,19 @@ function Gallery(arg) {
     let zoomButtonsNode = zoomAreaNode.appendChild(element);
 
     element = document.createElement("div");
-    element.classList.add("progress");
-    zoomAreaNode.appendChild(element);
+    element.classList.add("progress-area");
+    let progressArea=zoomAreaNode.appendChild(element);
+
+    element = document.createElement("div");
+    element.classList.add("progress-bar");
+    let progressNode=progressArea.appendChild(element);
+
+    element = document.createElement("div");
+    progressNode.appendChild(element);
+
+    element = document.createElement("div");
+    element.classList.add("progress-info");
+    progressArea.appendChild(element);
 
     if (arg.zoom) {
       element = document.createElement("span");
