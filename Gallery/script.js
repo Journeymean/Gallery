@@ -337,7 +337,7 @@ function Gallery(arg) {
       imageContainerNode.src = "";
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
-        counterCurrentNode.innerText = frameNode.currentImage - 1;
+        counterCurrentNode.innerText = frameNode.currentImage + 1;
       }
     }
 
