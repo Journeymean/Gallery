@@ -27,9 +27,6 @@ function Gallery(arg) {
   window.addEventListener("load", () => {
     let frame = CreateHTML(arg);
     Initiazlize(frame, arg);
-    arg.images.forEach(image => {
-      loadImage(image);
-    });
   });
 
   function CreateHTML(arg) {
@@ -302,14 +299,39 @@ function Gallery(arg) {
       }
     }
 
+    function loadImage(url) {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.send();
+      xhr.onload = function () {
+        if (xhr.status != 200) {
+          console.log(`Error ${xhr.status}: ${xhr.statusText}`);
+        } else {
+          imageContainerNode.src = url;
+        }
+      };
+
+      xhr.onprogress = function (event) {
+        if (event.lengthComputable) {
+          alert(`Получено ${event.loaded} из ${event.total} байт`);
+        } else {
+          alert(`Получено ${event.loaded} байт`);
+        }
+      };
+
+      xhr.onerror = function () {
+        console.log("Image loading error");
+      };
+    }
+
     function nextImage() {
       if (frameNode.currentImage >= frameNode.images.length - 1) {
         frameNode.currentImage = 0;
       } else {
         frameNode.currentImage++;
       }
-      imageContainerNode.src='';
-      imageContainerNode.src = frameNode.images[frameNode.currentImage];
+      imageContainerNode.src = "";
+      loadImage(frameNode.images[frameNode.currentImage]);
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
       }
@@ -337,7 +359,7 @@ function Gallery(arg) {
       } else {
         frameNode.currentImage++;
       }
-      imageContainerNode.src='';
+      imageContainerNode.src = "";
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -641,29 +663,4 @@ function Gallery(arg) {
       }
     });
   }
-
-  function loadImage(url){
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url,true);
-    xhr.send();
-    xhr.onload = function() {
-      if (xhr.status != 200) { 
-        console.log(`Error ${xhr.status}: ${xhr.statusText}`);
-      } else {
-        alert(`Готово, получили ${xhr.response.length} байт`); 
-      }
-    };
-    
-    xhr.onprogress = function(event) {
-      if (event.lengthComputable) {
-        alert(`Получено ${event.loaded} из ${event.total} байт`);
-      } else {
-        alert(`Получено ${event.loaded} байт`);
-      }
-    };
-    
-    xhr.onerror = function() {
-      console.log('Image loading error');
-    };
-    }
 }
