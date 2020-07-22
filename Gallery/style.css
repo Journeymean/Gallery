@@ -1,0 +1,191 @@
+/*Author: Sergei Illarionov 2020 copyright ©*/
+
+.frame-container {
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  background-color: #363637;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullsize {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.frame-container .buttons-area {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: grid;
+  pointer-events: none;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto auto;
+  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.frame-container .buttons-area .buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: all;
+  height: fit-content;
+  margin: 0.5rem;
+  grid-column-start: 3;
+  align-self: center;
+}
+
+.frame-container .buttons-area .buttons span {
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: #363637;
+  font-weight: bolder;
+  font-family: monospace;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+}
+
+.frame-container .buttons-area .buttons span path {
+  stroke: #363637;
+  stroke-width: 4;
+}
+
+.prev {
+  grid-column-start: 1 !important;
+  grid-row-start: 2 !important;
+}
+
+.counter {
+  grid-column-start: 2;
+  width: 6em;
+  height: auto;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: monospace;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.frame-container span svg {
+  width: 50%;
+  height: 50%;
+}
+
+.no-touch .buttons-area .buttons span:hover::before {
+  position: absolute;
+  right: 7em;
+  z-index: 1;
+  background: white;
+  color: black;
+  font-size: 12px;
+  padding: 5px 10px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  height: 1.8em;
+  border-radius: 0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-touch .zoom-in:hover::before {
+  content: "Zoom in";
+}
+
+.no-touch .zoom-out:hover::before {
+  content: "Zoom out";
+}
+
+.no-touch .fullsize-button:hover::before {
+  content: "Show in full screen";
+}
+
+.no-touch .center-button:hover::before {
+  content: "Center the image";
+}
+
+.no-touch .next-button:hover::before {
+  content: "Show next image";
+}
+
+.no-touch .prev-button:hover::before {
+  content: "Show previous image";
+  left: 7em;
+  right: auto !important;
+}
+
+.no-touch .buttons-area .buttons span:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.no-touch .buttons-area .buttons span:hover  path {
+  stroke: white !important;
+}
+
+.hovered {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.hovered svg path {
+  stroke: white !important;
+}
+
+.frame-container .image-container {
+  position: relative;
+  width: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  height: -webkit-fit-content;
+  display: flex;
+  left: 0;
+  top: 0;
+  cursor: grab;
+  transition-duration: 0.4s;
+}
+
+.frame-container .grabbing {
+  cursor: grabbing !important;
+  transition-duration: unset !important;
+}
