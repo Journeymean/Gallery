@@ -131,6 +131,7 @@ function Gallery(arg) {
     const centerNode = frameNode.querySelector('.center-button');
     const counterCurrentNode = frameNode.querySelector('.counter-current');
     const counterTotalNode = frameNode.querySelector('.counter-total');
+    const loaderNode = frameNode.querySelector('.loader');
 
     imageContainerNode.src = arg.images[0];
     frameNode.images = arg.images;
@@ -303,7 +304,9 @@ function Gallery(arg) {
         }
       }
     }
-
+    imageContainerNode.addEventListener('load',()=>{
+      loaderNode.classList.remove('hide');
+    });
     function nextImage() {
       if (frameNode.currentImage >= frameNode.images.length - 1) {
         frameNode.currentImage = 0;
@@ -311,7 +314,7 @@ function Gallery(arg) {
         frameNode.currentImage++;
       }
       imageContainerNode.src = '';
-      imageContainerNode.addEventListener('load',()=>{console.log('complete')});
+      loaderNode.classList.add('hide');
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -341,6 +344,7 @@ function Gallery(arg) {
         frameNode.currentImage--;
       }
       imageContainerNode.src = '';
+      loaderNode.classList.add('hide');
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
