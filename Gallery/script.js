@@ -24,92 +24,92 @@ function Gallery(arg) {
     arg.center = true;
   }
 
-  window.addEventListener("load", () => {
+  window.addEventListener('load', () => {
     let frame = CreateHTML(arg);
     Initiazlize(frame, arg);
   });
 
   function CreateHTML(arg) {
     let parentNode = document.querySelectorAll(arg.wrapper)[0];
-    let element = document.createElement("div");
-    element.classList.add("frame-container");
+    let element = document.createElement('div');
+    element.classList.add('frame-container');
     let frameNode = parentNode.appendChild(element);
 
-    if ("ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
+    if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
     } else {
-      frameNode.classList.add("no-touch");
+      frameNode.classList.add('no-touch');
     }
 
-    element = document.createElement("div");
-    element.classList.add("buttons-area");
+    element = document.createElement('div');
+    element.classList.add('buttons-area');
     let zoomAreaNode = frameNode.appendChild(element);
 
-    element = document.createElement("div");
-    element.classList.add("buttons");
+    element = document.createElement('div');
+    element.classList.add('buttons');
     let zoomButtonsNode = zoomAreaNode.appendChild(element);
 
     if (arg.zoom) {
-      element = document.createElement("span");
+      element = document.createElement('span');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 50 20 v 60 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 20 50  h 60 " /></svg>';
-      element.classList.add("zoom-in");
+      element.classList.add('zoom-in');
       zoomButtonsNode.appendChild(element);
 
-      element = document.createElement("span");
+      element = document.createElement('span');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 20 50  h 60 " /></svg>';
-      element.classList.add("zoom-out");
+      element.classList.add('zoom-out');
       zoomButtonsNode.appendChild(element);
     }
 
     if (arg.fullsize || arg.strictfullsize) {
-      element = document.createElement("span");
-      element.classList.add("fullsize-button");
+      element = document.createElement('span');
+      element.classList.add('fullsize-button');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 65 10 h 25 v 25 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 10 65  v 25 h 25 " /></svg>';
       zoomButtonsNode.appendChild(element);
     }
 
     if (arg.center && (arg.zoom || arg.grab)) {
-      element = document.createElement("span");
-      element.classList.add("center-button");
+      element = document.createElement('span');
+      element.classList.add('center-button');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 10 10 h 80 v 80 h -80 v -80 "></path> <path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 30 30 h 40 v 40 h -40 v -40 "></path></svg>';
       zoomButtonsNode.appendChild(element);
     }
 
     if (arg.images.length > 1) {
-      element = document.createElement("div");
-      element.classList.add("buttons", "next");
+      element = document.createElement('div');
+      element.classList.add('buttons', 'next');
       let nextNode = zoomAreaNode.appendChild(element);
 
-      element = document.createElement("span");
-      element.classList.add("next-button");
+      element = document.createElement('span');
+      element.classList.add('next-button');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 30 30 L 70 50 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 70 50  L 30 70 " /></svg>';
       nextNode.appendChild(element);
 
-      element = document.createElement("div");
-      element.classList.add("buttons", "prev");
+      element = document.createElement('div');
+      element.classList.add('buttons', 'prev');
       let prevNode = zoomAreaNode.appendChild(element);
 
-      element = document.createElement("span");
-      element.classList.add("prev-button");
+      element = document.createElement('span');
+      element.classList.add('prev-button');
       element.innerHTML = '<svg  width="512.000000pt" height="512.000000pt" viewBox="0 0 100 100"><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 70 30 L 30 50 " /><path stroke="rgba(0, 0, 0, 0.5)" stroke-width="6" fill="none" stroke-linejoin="round" stroke-linecap="round" d="M 30 50  L 70 70 " /></svg>';
       prevNode.appendChild(element);
     }
 
     if (arg.counter) {
-      element = document.createElement("div");
-      element.classList.add("counter");
+      element = document.createElement('div');
+      element.classList.add('counter');
       let counterNode = zoomAreaNode.appendChild(element);
 
-      element = document.createElement("span");
-      element.classList.add("counter-current");
+      element = document.createElement('span');
+      element.classList.add('counter-current');
       counterNode.appendChild(element);
 
-      element = document.createElement("span");
-      element.classList.add("counter-total");
+      element = document.createElement('span');
+      element.classList.add('counter-total');
       counterNode.appendChild(element);
     }
 
-    element = document.createElement("img");
-    element.classList.add("image-container");
+    element = document.createElement('img');
+    element.classList.add('image-container');
     frameNode.appendChild(element);
 
     return frameNode;
@@ -117,26 +117,26 @@ function Gallery(arg) {
 
   function Initiazlize(frame, arg) {
     const frameNode = frame;
-    const imageContainerNode = frameNode.querySelector(".image-container");
-    const zoomInNode = frameNode.querySelector(".zoom-in");
-    const zoomOutNode = frameNode.querySelector(".zoom-out");
-    const fullsizeNode = frameNode.querySelector(".fullsize-button");
-    const nextNode = frameNode.querySelector(".next-button");
-    const prevNode = frameNode.querySelector(".prev-button");
-    const centerNode = frameNode.querySelector(".center-button");
-    const counterCurrentNode = frameNode.querySelector(".counter-current");
-    const counterTotalNode = frameNode.querySelector(".counter-total");
+    const imageContainerNode = frameNode.querySelector('.image-container');
+    const zoomInNode = frameNode.querySelector('.zoom-in');
+    const zoomOutNode = frameNode.querySelector('.zoom-out');
+    const fullsizeNode = frameNode.querySelector('.fullsize-button');
+    const nextNode = frameNode.querySelector('.next-button');
+    const prevNode = frameNode.querySelector('.prev-button');
+    const centerNode = frameNode.querySelector('.center-button');
+    const counterCurrentNode = frameNode.querySelector('.counter-current');
+    const counterTotalNode = frameNode.querySelector('.counter-total');
 
     imageContainerNode.src = arg.images[0];
     frameNode.images = arg.images;
     frameNode.currentImage = 0;
     if (counterTotalNode) {
       counterCurrentNode.innerText = frameNode.currentImage + 1;
-      counterTotalNode.innerHTML = "&#160;/&#160;" + frameNode.images.length;
+      counterTotalNode.innerHTML = '&#160;/&#160;' + frameNode.images.length;
     }
 
     if (!arg.grab) {
-      imageContainerNode.style.cursor = "initial";
+      imageContainerNode.style.cursor = 'initial';
     }
 
     /*Setups start*/
@@ -165,7 +165,7 @@ function Gallery(arg) {
     state.zoom = 1;
     state.scrollY = null;
 
-    if ("ontouchstart" in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
+    if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
       state.mobile = true;
     } else {
       state.mobile = false;
@@ -179,16 +179,16 @@ function Gallery(arg) {
     function checkBordersOut() {
       let flag = false;
       if (imageContainerNode.getBoundingClientRect().height + (imageContainerNode.getBoundingClientRect().top - frameNode.getBoundingClientRect().top) < 200) {
-        flag = "top";
+        flag = 'top';
       }
       if (frameNode.getBoundingClientRect().height - (imageContainerNode.getBoundingClientRect().top - frameNode.getBoundingClientRect().top) < 200) {
-        flag = "bottom";
+        flag = 'bottom';
       }
       if (imageContainerNode.getBoundingClientRect().width + (imageContainerNode.getBoundingClientRect().left - frameNode.getBoundingClientRect().left) < 200) {
-        flag = "left";
+        flag = 'left';
       }
       if (frameNode.getBoundingClientRect().width - (imageContainerNode.getBoundingClientRect().left - frameNode.getBoundingClientRect().left) < 200) {
-        flag = "right";
+        flag = 'right';
       }
       return flag;
     }
@@ -210,7 +210,7 @@ function Gallery(arg) {
     }
 
     function defineScale(frameNode) {
-      const imageContainerNode = frameNode.querySelector(".image-container");
+      const imageContainerNode = frameNode.querySelector('.image-container');
       frameNode.settings.scaleScope.initial = Math.min(frameNode.clientWidth / imageContainerNode.clientWidth, frameNode.clientHeight / imageContainerNode.clientHeight);
       frameNode.state.scale = frameNode.settings.scaleScope.initial;
       frameNode.state.zoom = 1;
@@ -221,12 +221,12 @@ function Gallery(arg) {
     }
 
     function toggleFullSize() {
-      if (!frameNode.classList.contains("fullsize")) {
+      if (!frameNode.classList.contains('fullsize')) {
         frameNode.state.scrollY = window.scrollY;
       }
-      frameNode.classList.toggle("fullsize");
+      frameNode.classList.toggle('fullsize');
       defineScale(frameNode);
-      if (!frameNode.classList.contains("fullsize")) {
+      if (!frameNode.classList.contains('fullsize')) {
         window.scroll(0, frameNode.state.scrollY);
       }
     }
@@ -262,15 +262,15 @@ function Gallery(arg) {
       }
     }
 
-    frameNode.addEventListener("webkitfullscreenchange", () => {
+    frameNode.addEventListener('webkitfullscreenchange', () => {
       defineScale(frameNode);
       window.scroll(0, frameNode.state.scrollY);
     });
-    frameNode.addEventListener("mozfullscreenchange", () => {
+    frameNode.addEventListener('mozfullscreenchange', () => {
       defineScale(frameNode);
       window.scroll(0, frameNode.state.scrollY);
     });
-    frameNode.addEventListener("fullscreenchange", () => {
+    frameNode.addEventListener('fullscreenchange', () => {
       defineScale(frameNode);
       window.scroll(0, frameNode.state.scrollY);
     });
@@ -278,23 +278,23 @@ function Gallery(arg) {
     if (fullsizeNode) {
       if (frameNode.state.mobile) {
         if (arg.strictfullsize) {
-          fullsizeNode.addEventListener("touchstart", fullscreenChange);
+          fullsizeNode.addEventListener('touchstart', fullscreenChange);
         } else {
-          fullsizeNode.addEventListener("touchstart", toggleFullSize);
+          fullsizeNode.addEventListener('touchstart', toggleFullSize);
         }
-        fullsizeNode.addEventListener("touchstart", () => {
-          fullsizeNode.classList.add("hovered");
+        fullsizeNode.addEventListener('touchstart', () => {
+          fullsizeNode.classList.add('hovered');
         });
-        fullsizeNode.addEventListener("touchend", () => {
+        fullsizeNode.addEventListener('touchend', () => {
           setTimeout(() => {
-            fullsizeNode.classList.remove("hovered");
+            fullsizeNode.classList.remove('hovered');
           }, 200);
         });
       } else {
         if (arg.strictfullsize) {
-          fullsizeNode.addEventListener("click", fullscreenChange);
+          fullsizeNode.addEventListener('click', fullscreenChange);
         } else {
-          fullsizeNode.addEventListener("click", toggleFullSize);
+          fullsizeNode.addEventListener('click', toggleFullSize);
         }
       }
     }
@@ -305,7 +305,7 @@ function Gallery(arg) {
       } else {
         frameNode.currentImage++;
       }
-      imageContainerNode.src = "";
+      imageContainerNode.src = '';
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -314,17 +314,17 @@ function Gallery(arg) {
 
     if (nextNode) {
       if (frameNode.state.mobile) {
-        nextNode.addEventListener("touchstart", nextImage);
-        nextNode.addEventListener("touchstart", () => {
-          nextNode.classList.add("hovered");
+        nextNode.addEventListener('touchstart', nextImage);
+        nextNode.addEventListener('touchstart', () => {
+          nextNode.classList.add('hovered');
         });
-        nextNode.addEventListener("touchend", () => {
+        nextNode.addEventListener('touchend', () => {
           setTimeout(() => {
-            nextNode.classList.remove("hovered");
+            nextNode.classList.remove('hovered');
           }, 200);
         });
       } else {
-        nextNode.addEventListener("click", nextImage);
+        nextNode.addEventListener('click', nextImage);
       }
     }
 
@@ -334,7 +334,7 @@ function Gallery(arg) {
       } else {
         frameNode.currentImage--;
       }
-      imageContainerNode.src = "";
+      imageContainerNode.src = '';
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -343,35 +343,35 @@ function Gallery(arg) {
 
     if (prevNode) {
       if (frameNode.state.mobile) {
-        prevNode.addEventListener("touchstart", prevImage);
-        prevNode.addEventListener("touchstart", () => {
-          prevNode.classList.add("hovered");
+        prevNode.addEventListener('touchstart', prevImage);
+        prevNode.addEventListener('touchstart', () => {
+          prevNode.classList.add('hovered');
         });
-        prevNode.addEventListener("touchend", () => {
+        prevNode.addEventListener('touchend', () => {
           setTimeout(() => {
-            prevNode.classList.remove("hovered");
+            prevNode.classList.remove('hovered');
           }, 200);
         });
       } else {
-        prevNode.addEventListener("click", prevImage);
+        prevNode.addEventListener('click', prevImage);
       }
     }
 
     if (centerNode) {
       if (frameNode.state.mobile) {
-        centerNode.addEventListener("touchstart", () => {
+        centerNode.addEventListener('touchstart', () => {
           defineScale(frameNode);
         });
-        centerNode.addEventListener("touchstart", () => {
-          centerNode.classList.add("hovered");
+        centerNode.addEventListener('touchstart', () => {
+          centerNode.classList.add('hovered');
         });
-        centerNode.addEventListener("touchend", () => {
+        centerNode.addEventListener('touchend', () => {
           setTimeout(() => {
-            centerNode.classList.remove("hovered");
+            centerNode.classList.remove('hovered');
           }, 200);
         });
       } else {
-        centerNode.addEventListener("click", () => {
+        centerNode.addEventListener('click', () => {
           defineScale(frameNode);
         });
       }
@@ -379,31 +379,31 @@ function Gallery(arg) {
 
     if (arg.grab) {
       if (frameNode.state.mobile) {
-        document.addEventListener("touchmove", (event) => {
+        document.addEventListener('touchmove', (event) => {
           if (event.touches.length == 1) {
             if (frameNode.state.moving === true) {
               let check = checkBordersOut();
               if (check != false) {
                 switch (check) {
-                  case "left":
+                  case 'left':
                     if (event.touches[0].pageX < frameNode.state.checkBorders.x) {
                       event.preventDefault();
                       return;
                     }
                     break;
-                  case "right":
+                  case 'right':
                     if (event.touches[0].pageX > frameNode.state.checkBorders.x) {
                       event.preventDefault();
                       return;
                     }
                     break;
-                  case "top":
+                  case 'top':
                     if (event.touches[0].pageY < frameNode.state.checkBorders.y) {
                       event.preventDefault();
                       return;
                     }
                     break;
-                  case "bottom":
+                  case 'bottom':
                     if (event.touches[0].pageY > frameNode.state.checkBorders.y) {
                       event.preventDefault();
                       return;
@@ -412,16 +412,16 @@ function Gallery(arg) {
                 }
               }
 
-              imageContainerNode.classList.add("grabbing");
-              imageContainerNode.style.left = parseInt(window.getComputedStyle(imageContainerNode).left) + (event.touches[0].pageX - frameNode.state.click.left) + "px";
-              imageContainerNode.style.top = parseInt(window.getComputedStyle(imageContainerNode).top) + (event.touches[0].pageY - frameNode.state.click.top) + "px";
+              imageContainerNode.classList.add('grabbing');
+              imageContainerNode.style.left = parseInt(window.getComputedStyle(imageContainerNode).left) + (event.touches[0].pageX - frameNode.state.click.left) + 'px';
+              imageContainerNode.style.top = parseInt(window.getComputedStyle(imageContainerNode).top) + (event.touches[0].pageY - frameNode.state.click.top) + 'px';
               frameNode.state.click.left = event.touches[0].pageX;
               frameNode.state.click.top = event.touches[0].pageY;
             }
           }
         });
 
-        imageContainerNode.addEventListener("touchstart", (event) => {
+        imageContainerNode.addEventListener('touchstart', (event) => {
           if (event.touches.length == 1) {
             frameNode.state.moving = true;
             frameNode.state.click.left = event.touches[0].pageX;
@@ -432,58 +432,58 @@ function Gallery(arg) {
           }
         });
 
-        document.addEventListener("touchcancel", () => {
+        document.addEventListener('touchcancel', () => {
           frameNode.state.moving = false;
           frameNode.state.scaling = false;
-          imageContainerNode.classList.remove("grabbing");
+          imageContainerNode.classList.remove('grabbing');
         });
 
-        document.addEventListener("touchend", () => {
+        document.addEventListener('touchend', () => {
           frameNode.state.moving = false;
           frameNode.state.scaling = false;
-          imageContainerNode.classList.remove("grabbing");
+          imageContainerNode.classList.remove('grabbing');
         });
       } else {
-        imageContainerNode.addEventListener("mousedown", (event) => {
+        imageContainerNode.addEventListener('mousedown', (event) => {
           frameNode.state.moving = true;
           frameNode.state.click.left = event.pageX;
           frameNode.state.click.top = event.pageY;
           frameNode.state.checkBorders.x = event.pageX;
           frameNode.state.checkBorders.y = event.pageY;
-          imageContainerNode.classList.add("grabbing");
+          imageContainerNode.classList.add('grabbing');
           event.preventDefault();
         });
 
-        document.addEventListener("mouseup", () => {
+        document.addEventListener('mouseup', () => {
           frameNode.state.moving = false;
-          imageContainerNode.classList.remove("grabbing");
+          imageContainerNode.classList.remove('grabbing');
         });
 
-        document.addEventListener("mousemove", (event) => {
+        document.addEventListener('mousemove', (event) => {
           if (frameNode.state.moving === true) {
             let check = checkBordersOut();
 
             if (check != false) {
               switch (check) {
-                case "left":
+                case 'left':
                   if (event.pageX < frameNode.state.checkBorders.x) {
                     event.preventDefault();
                     return;
                   }
                   break;
-                case "right":
+                case 'right':
                   if (event.pageX > frameNode.state.checkBorders.x) {
                     event.preventDefault();
                     return;
                   }
                   break;
-                case "top":
+                case 'top':
                   if (event.pageY < frameNode.state.checkBorders.y) {
                     event.preventDefault();
                     return;
                   }
                   break;
-                case "bottom":
+                case 'bottom':
                   if (event.pageY > frameNode.state.checkBorders.y) {
                     event.preventDefault();
                     return;
@@ -492,8 +492,8 @@ function Gallery(arg) {
               }
             }
 
-            imageContainerNode.style.left = parseInt(window.getComputedStyle(imageContainerNode).left) + (event.pageX - frameNode.state.click.left) + "px";
-            imageContainerNode.style.top = parseInt(window.getComputedStyle(imageContainerNode).top) + (event.pageY - frameNode.state.click.top) + "px";
+            imageContainerNode.style.left = parseInt(window.getComputedStyle(imageContainerNode).left) + (event.pageX - frameNode.state.click.left) + 'px';
+            imageContainerNode.style.top = parseInt(window.getComputedStyle(imageContainerNode).top) + (event.pageY - frameNode.state.click.top) + 'px';
             frameNode.state.click.left = event.pageX;
             frameNode.state.click.top = event.pageY;
           }
@@ -504,7 +504,7 @@ function Gallery(arg) {
     if (arg.zoom) {
       if (frameNode.state.mobile) {
         if (zoomInNode) {
-          zoomInNode.addEventListener("touchstart", (event) => {
+          zoomInNode.addEventListener('touchstart', (event) => {
             event.preventDefault();
             frameNode.state.autoscaling = setInterval(() => {
               sizeIn(0.002);
@@ -512,22 +512,22 @@ function Gallery(arg) {
             }, 0);
           });
 
-          document.addEventListener("touchend", () => {
+          document.addEventListener('touchend', () => {
             clearInterval(frameNode.state.autoscaling);
           });
 
-          zoomInNode.addEventListener("touchstart", () => {
-            zoomInNode.classList.add("hovered");
+          zoomInNode.addEventListener('touchstart', () => {
+            zoomInNode.classList.add('hovered');
           });
-          zoomInNode.addEventListener("touchend", () => {
+          zoomInNode.addEventListener('touchend', () => {
             setTimeout(() => {
-              zoomInNode.classList.remove("hovered");
+              zoomInNode.classList.remove('hovered');
             }, 200);
           });
         }
 
         if (zoomOutNode) {
-          zoomOutNode.addEventListener("touchstart", (event) => {
+          zoomOutNode.addEventListener('touchstart', (event) => {
             event.preventDefault();
             frameNode.state.autoscaling = setInterval(() => {
               sizeOut(0.002);
@@ -535,30 +535,30 @@ function Gallery(arg) {
             }, 0);
           });
 
-          document.addEventListener("touchend", () => {
+          document.addEventListener('touchend', () => {
             clearInterval(frameNode.state.autoscaling);
           });
 
-          zoomOutNode.addEventListener("touchstart", () => {
-            zoomOutNode.classList.add("hovered");
+          zoomOutNode.addEventListener('touchstart', () => {
+            zoomOutNode.classList.add('hovered');
           });
-          zoomOutNode.addEventListener("touchend", () => {
+          zoomOutNode.addEventListener('touchend', () => {
             setTimeout(() => {
-              zoomOutNode.classList.remove("hovered");
+              zoomOutNode.classList.remove('hovered');
             }, 200);
           });
         }
 
-        imageContainerNode.addEventListener("touchstart", (event) => {
+        imageContainerNode.addEventListener('touchstart', (event) => {
           if (event.touches.length == 2) {
-            imageContainerNode.classList.remove("grabbing");
+            imageContainerNode.classList.remove('grabbing');
             frameNode.state.scaling = true;
             frameNode.state.touchDist = Math.sqrt((event.touches[0].pageX - event.touches[1].pageX) * (event.touches[0].pageX - event.touches[1].pageX) + (event.touches[0].pageY - event.touches[1].pageY) * (event.touches[0].pageY - event.touches[1].pageY));
             event.preventDefault();
           }
         });
 
-        document.addEventListener("touchmove", (event) => {
+        document.addEventListener('touchmove', (event) => {
           if (event.touches.length == 2) {
             if (frameNode.state.scaling === true) {
               let dist = Math.sqrt((event.touches[0].pageX - event.touches[1].pageX) * (event.touches[0].pageX - event.touches[1].pageX) + (event.touches[0].pageY - event.touches[1].pageY) * (event.touches[0].pageY - event.touches[1].pageY));
@@ -573,7 +573,7 @@ function Gallery(arg) {
           }
         });
       } else {
-        imageContainerNode.addEventListener("wheel", (event) => {
+        imageContainerNode.addEventListener('wheel', (event) => {
           event.preventDefault();
           if (event.deltaY < 0) {
             sizeIn(0.05);
@@ -583,16 +583,16 @@ function Gallery(arg) {
         });
 
         if (zoomInNode) {
-          zoomInNode.addEventListener("click", (event) => {
+          zoomInNode.addEventListener('click', (event) => {
             if (!frameNode.state.autoscaleFlag) {
               event.preventDefault();
               sizeIn(0.05);
             }
             frameNode.state.autoscaleFlag = false;
-            console.log("click");
+            console.log('click');
           });
 
-          zoomInNode.addEventListener("mousedown", (event) => {
+          zoomInNode.addEventListener('mousedown', (event) => {
             frameNode.state.autoscaling = setInterval(() => {
               sizeIn(0.002);
               frameNode.state.autoscaleFlag = true;
@@ -600,13 +600,13 @@ function Gallery(arg) {
             event.preventDefault();
           });
 
-          document.addEventListener("mouseup", (event) => {
+          document.addEventListener('mouseup', (event) => {
             clearInterval(frameNode.state.autoscaling);
           });
         }
 
         if (zoomOutNode) {
-          zoomOutNode.addEventListener("click", (event) => {
+          zoomOutNode.addEventListener('click', (event) => {
             if (!frameNode.state.autoscaleFlag) {
               event.preventDefault();
               sizeOut(0.05);
@@ -614,25 +614,25 @@ function Gallery(arg) {
             frameNode.state.autoscaleFlag = false;
           });
 
-          zoomOutNode.addEventListener("mousedown", (event) => {
+          zoomOutNode.addEventListener('mousedown', (event) => {
             frameNode.state.autoscaling = setInterval(() => {
               sizeOut(0.002);
             }, 0);
             event.preventDefault();
           });
 
-          document.addEventListener("mouseup", (event) => {
+          document.addEventListener('mouseup', (event) => {
             clearInterval(frameNode.state.autoscaling);
           });
         }
       }
     }
 
-    imageContainerNode.addEventListener("load", () => {
+    imageContainerNode.addEventListener('load', () => {
       defineScale(frameNode);
     });
 
-    frameNode.addEventListener("touchstart", (event) => {
+    frameNode.addEventListener('touchstart', (event) => {
       if (event.touches.length == 2) {
         event.preventDefault();
       }
