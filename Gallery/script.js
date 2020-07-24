@@ -305,7 +305,7 @@ function Gallery(arg) {
       }
     }
     imageContainerNode.addEventListener('load',()=>{
-      loaderNode.classList.remove('hide');
+      loaderNode.classList.add('hide');
     });
     function nextImage() {
       if (frameNode.currentImage >= frameNode.images.length - 1) {
@@ -314,7 +314,7 @@ function Gallery(arg) {
         frameNode.currentImage++;
       }
       imageContainerNode.src = '';
-      loaderNode.classList.add('hide');
+      loaderNode.classList.remove('hide');
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
@@ -344,7 +344,7 @@ function Gallery(arg) {
         frameNode.currentImage--;
       }
       imageContainerNode.src = '';
-      loaderNode.classList.add('hide');
+      loaderNode.classList.remove('hide');
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
