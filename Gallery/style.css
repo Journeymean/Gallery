@@ -190,6 +190,10 @@
   transition-duration: unset !important;
 }
 
+.hide{
+  display: none !important;
+}
+
 .loader {
   align-self: center;
   justify-self: center;
