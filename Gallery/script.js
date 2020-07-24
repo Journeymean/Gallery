@@ -312,6 +312,7 @@ function Gallery(arg) {
       }
       imageContainerNode.src = '';
       imageContainerNode.src = frameNode.images[frameNode.currentImage];
+      imageContainerNode.addEventListener('load',()=>{console.log('complete')});
       if (counterCurrentNode) {
         counterCurrentNode.innerText = frameNode.currentImage + 1;
       }
